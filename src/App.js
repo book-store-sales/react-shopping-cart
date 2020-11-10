@@ -1,6 +1,5 @@
  import React  from 'react';
 import { Route } from 'react-router-dom';
-import data from './data';
 import { connect } from "react-redux";
 // Components
 import Navigation from './components/Navigation';
