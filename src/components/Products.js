@@ -2,7 +2,7 @@ import React from 'react';
 
 
 // Components
-import Product from './Product';
+import ProductList from './ProductList';
 
 
 const Products =() => {
