@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Route } from 'react-router-dom';
 import data from './data';
-
+import { connect } from "react-redux";
 // Components
 import Navigation from './components/Navigation';
 import Products from './components/Products';
@@ -23,23 +23,18 @@ function App() {
 
 	return (
 		<div className="App">
-			<ProductContext.Provider value = {{products, addItem}}>
-				<CartContext.Provider value= {{cart, removeItem}}>
-					<Navigation  />
+			<Products props = {{products, addItem}}/>
+			<ShoppingCart props= {{cart, removeItem}} />
+			<Navigation  />
 
-					{/* Routes */}
-					<Route exact path="/">
-						<Products />
-					</Route>
+			{/* Routes */}
+			<Route exact path="/">
+				<Products />
+			</Route>
 
-					<Route path="/cart">
-						<ShoppingCart  />
-					</Route>
-				</CartContext.Provider>
-					
-
-			</ProductContext.Provider>
-			
+			<Route path="/cart">
+				<ShoppingCart  />
+			</Route>			
 		</div>
 	);
 }
