@@ -6,8 +6,6 @@ import data from './data';
 import Navigation from './components/Navigation';
 import Products from './components/Products';
 import ShoppingCart from './components/ShoppingCart';
-import { ProductContext } from './contexts/ProductContext';
-import {CartContext} from './contexts/CartContext'
 
 
 function App() {
@@ -46,4 +44,10 @@ function App() {
 	);
 }
 
-export default App;
+const mapStateToProps = (state) => {
+	console.log("App state", state);
+	return state;
+  };
+
+export default connect(mapStateToProps)(App);
+
