@@ -6,7 +6,7 @@ import Product from './Product';
 
 
 const ProductList =({products, addItem}) => {
-	const [search, setSearch] = useState(' ');
+	const [search, setSearch] = useState('');
 	const onChange = (e) => {
 		setSearch( e.target.value );
 	  };
