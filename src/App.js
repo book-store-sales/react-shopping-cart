@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import Navigation from './components/Navigation';
 import ProductList from './components/ProductList';
 import ShoppingCart from './components/ShoppingCart';
+import CheckoutPage from './components/CheckoutPage'
+import Login from './components/Login'
 import {addItem, removeItem} from './actions'
 
 
@@ -31,6 +33,12 @@ function App(props) {
 			<Navigation  cart={props.cart}/> 
 			<Route exact path="/">
 				<ProductList products={props.products} addItem={props.addItem} />
+			</Route>
+			<Route path="/login">
+				<Login />
+			</Route>
+			<Route path="/checkout">
+				<CheckoutPage />
 			</Route>
 
 			<Route path="/cart">
