@@ -6,13 +6,9 @@ import Product from './Product';
 
 
 const ProductList =({products, addItem}) => {
-<<<<<<< HEAD
 	const[data, setData] = useState(products)
 	const [search, setSearch] = useState(' ');
 	const [sort, setSortBy] = useState('')
-=======
-	const [search, setSearch] = useState('');
->>>>>>> f6e81d6b964752583cceb08c25930ec5ab4785dc
 	const onChange = (e) => {
 		const {  value, type } = e.target;
 		( type === "text") ? setSearch( value ) : setSortBy(value);
