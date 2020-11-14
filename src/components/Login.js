@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const Login = () => {
-  const [data, setData] = useState();
+  const [info, setInfo] = useState();
   const { register, errors, handleSubmit } = useForm({
     mode: "onBlur"
   });
   const onSubmit = (data) => {
-    setData(data);
+    setInfo(data);
+    console.log(info)
   };
 
   return (
