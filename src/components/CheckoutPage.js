@@ -1,75 +1,92 @@
-import React, {useState} from 'react'
-
-
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 
 const initialValue = {
-    firstName: "",
-    lastName: "",
-    address: "",
-    city: "",
-    state: "",
-    zip: "",
+  firstName: "",
+  lastName: "",
+  address: "",
+  city: "",
+  state: "",
+  zip: ""
+};
+
+const CheckoutPage = () => {
+  const [data, setData] = useState();
+  const { register, errors, handleSubmit } = useForm({
+    mode: "onBlur"
+  });
+  const onSubmit = (data) => {
+    setData(data);
   };
 
-const CheckoutPage =({cart}) => {
-    
-    const [values, setValues] = useState(initialValue)
-
-  
-
-    return(
-         <div className="container">
-          <div className="checkout-section">
-            <h1><b>CHECKOUT!</b></h1>
-            <form >
-        <h2>Checkout Form</h2>
-    
-          
+  return (
+    <div className="checkout-section">
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div>
+          <label htmlFor="firstName">First Name</label>
           <input
             name="firstName"
-            value={values.firstName}            
-            placeholder="First Name"
+            id="firstName"
+            placeholder="Alex"
+            ref={register({ required: true, minLength: 3 })}
           />
-        
-        <div className="baseline" />
-    
-         
+          {errors.firstName && (
+            <p className="er">
+              Looks like there was an error: {errors.firstName.type}
+            </p>
+          )}
+        </div>
+
+        <div>
+          <label htmlFor="lastName">Last Name</label>
           <input
             name="lastName"
-            value={values.lastName}            
-            placeholder="Last Name"
+            id="lastName"
+            placeholder="Burke"
+            ref={register({ required: true })}
           />
-        
-        <div className="baseline" />
-    
-          
+          {errors.lastName && (
+            <p className="er">
+              Looks like there was an error: {errors.lastName.type}
+            </p>
+          )}
+        </div>
+
+        <div>
+          <label htmlFor="address">Address</label>
+
           <input
             name="address"
-            value={values.address}
-            placeholder="Address"
+            id="address"
+            ref={register({ required: false })}
           />
-        
-        <div className="baseline" />
-    
-         
-          <input name="city" value={values.city}  placeholder="City" />
-        
-        <div className="baseline" />
-    
-          
-          <input name="state" value={values.state}  placeholder="State" />
-        
-        <div className="baseline" />
-    
-          
-          <input name="zip" value={values.zip}  placeholder="Zip" />
-        
-        <div className="baseline" />
-        <button className="md-button form-button">Update</button>
-      </form>
         </div>
-         </div>
-    )
-}
 
-export default CheckoutPage
+        <div>
+          <label htmlFor="city">City</label>
+
+          <input name="city" id="city" ref={register({ required: false })} />
+        </div>
+        <div>
+          <label htmlFor="zipcode">Zipcode</label>
+
+          <input
+            name="zipcode"
+            id="zipcode"
+            ref={register({ required: false })}
+          />
+        </div>
+
+        {/* {data && (
+          <pre style={{ textAlign: "left", color: "white" }}>
+            {JSON.stringify(data, null, 2)}
+          </pre>
+        )} */}
+
+        <input type="submit" id="submit" />
+      </form>
+    </div>
+  );
+};
+
+export default CheckoutPage;

@@ -1,32 +1,56 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const Login = () => {
-  const { register, handleSubmit, setValue, errors } = useForm();
-
+  const [data, setData] = useState();
+  const { register, errors, handleSubmit } = useForm({
+    mode: "onBlur"
+  });
   const onSubmit = (data) => {
-    // const user = {
-    //     username: data.username,
-    //     password: data.password
-    // }
-    console.log(data);
-
-    setValue("username", "");
-    setValue("password", "");
+    setData(data);
   };
+
   return (
-    <div className="login">
-      <div className="login-form">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <label>Username:</label>
-          <input type="text" name="username" ref={register} />
-          &nbsp; &nbsp;
-          <label>Password:</label>
-          <input type="text" name="password" ref={register} />
-          &nbsp; &nbsp;
-          <button type="submit">Submit</button>
-        </form>
-      </div>
+    <div className="Login">
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div>
+          <label htmlFor="username">Username</label>
+          <input
+            name="username"
+            id="username"
+            placeholder="username"
+            ref={register({ minLength: 3 })}
+          />
+          {errors.username && (
+            <p className="er">
+              Looks like there was an error: {errors.username.type}
+            </p>
+          )}
+        </div>
+
+        <div>
+          <label htmlFor="password">Password</label>
+          <input
+            name="password"
+            id="password"
+            placeholder="Password"
+            ref={register({ minLength: 5 })}
+          />
+          {errors.password && (
+            <p className="er">
+              Looks like there was an error: {errors.password.type}
+            </p>
+          )}
+        </div>
+
+        {/* {data && (
+          <pre style={{ textAlign: "left", color: "white" }}>
+            {JSON.stringify(data, null, 2)}
+          </pre>
+        )} */}
+
+        <input type="submit" id="submit" />
+      </form>
     </div>
   );
 };
