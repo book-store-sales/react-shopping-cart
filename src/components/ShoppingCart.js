@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { NavLink } from 'react-router-dom';
 // Components
 import Item from './ShoppingCartItem';
 
@@ -21,7 +21,7 @@ const ShoppingCart = ({cart, removeItem})=> {
 
 			<div className="shopping-cart__checkout">
 				<p>Total: ${getCartTotal()}</p>
-				<button>Checkout</button>
+				<NavLink to="/checkout"><button>Checkout</button></NavLink>
 			</div>
 		</div>
 	);
