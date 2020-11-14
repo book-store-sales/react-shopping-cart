@@ -1,24 +1,25 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
-const initialValue = {
-  firstName: "",
-  lastName: "",
-  address: "",
-  city: "",
-  state: "",
-  zip: ""
-};
+// const initialValue = {
+//   firstName: "",
+//   lastName: "",
+//   address: "",
+//   city: "",
+//   state: "",
+//   zip: ""
+// };
 
 const CheckoutPage = () => {
-  const [data, setData] = useState();
+  const [info, setInfo] = useState();
   const { register, errors, handleSubmit } = useForm({
     mode: "onBlur"
   });
   const onSubmit = (data) => {
-    setData(data);
+    setInfo(data);
+    console.log(info)
   };
-
+  
   return (
     <div className="checkout-section">
       <form onSubmit={handleSubmit(onSubmit)}>
