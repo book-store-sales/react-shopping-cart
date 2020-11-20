@@ -38,7 +38,7 @@ function App(props) {
 				<Login />
 			</Route>
 			<Route path="/checkout">
-				<CheckoutPage />
+				<CheckoutPage cart={props.cart} />
 			</Route>
 
 			<Route path="/cart">
